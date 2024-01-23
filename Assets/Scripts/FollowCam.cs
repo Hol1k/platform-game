@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class FollowCam : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform target;
 
-    // Update is called once per frame
-    void Update()
+    public float smoothTime = .2f;
+    private Vector3 velocity = Vector3.zero;
+
+    private void LateUpdate()
     {
-        
+        Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 }
